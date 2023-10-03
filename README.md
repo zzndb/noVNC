@@ -71,7 +71,7 @@ Please tweet [@noVNC](http://www.twitter.com/noVNC) if you do.
 * Supported VNC encodings: raw, copyrect, rre, hextile, tight, tightPNG,
   ZRLE, JPEG
 * Supports scaling, clipping and resizing the desktop
-* Local cursor rendering
+* Local or remote cursor rendering
 * Clipboard copy/paste with full Unicode support
 * Translations
 * Touch gestures for emulating common mouse actions
