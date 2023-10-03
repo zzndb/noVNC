@@ -179,6 +179,7 @@ const UI = {
         UI.initSetting('compression', 2);
         UI.initSetting('shared', true);
         UI.initSetting('view_only', false);
+        UI.initSetting('remote_cursor', false);
         UI.initSetting('show_dot', false);
         UI.initSetting('path', 'websockify');
         UI.initSetting('repeaterID', '');
@@ -366,6 +367,8 @@ const UI = {
         UI.addSettingChangeHandler('shared');
         UI.addSettingChangeHandler('view_only');
         UI.addSettingChangeHandler('view_only', UI.updateViewOnly);
+        UI.addSettingChangeHandler('remote_cursor');
+        UI.addSettingChangeHandler('remote_cursor', UI.updateRemoteCursor);
         UI.addSettingChangeHandler('show_dot');
         UI.addSettingChangeHandler('show_dot', UI.updateShowDotCursor);
         UI.addSettingChangeHandler('host');
@@ -863,6 +866,7 @@ const UI = {
         UI.updateSetting('compression');
         UI.updateSetting('shared');
         UI.updateSetting('view_only');
+        UI.updateSetting('remote_cursor');
         UI.updateSetting('path');
         UI.updateSetting('repeaterID');
         UI.updateSetting('logging');
@@ -1061,6 +1065,7 @@ const UI = {
         UI.rfb.qualityLevel = parseInt(UI.getSetting('quality'));
         UI.rfb.compressionLevel = parseInt(UI.getSetting('compression'));
         UI.rfb.showDotCursor = UI.getSetting('show_dot');
+        UI.rfb.remoteCursor = UI.getSetting('remote_cursor');
 
         UI.updateViewOnly(); // requires UI.rfb
     },
@@ -1712,6 +1717,11 @@ const UI = {
             document.getElementById('noVNC_clipboard_button')
                 .classList.remove('noVNC_hidden');
         }
+    },
+
+    updateRemoteCursor() {
+        if (!UI.rfb) return;
+        UI.rfb.remoteCursor = UI.getSetting('remote_cursor');
     },
 
     updateShowDotCursor() {
